@@ -128,7 +128,7 @@ sudo service autofs restart
 # sublime cht input
 if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
   cd /opt/sublime_text
-  sudo wget -O sublime_imfix.c https://raw.githubusercontent.com/JustinTW/rc/develop/sublime/sublime_imfix.c
+  sudo wget -O sublime_imfix.c https://raw.githubusercontent.com/JustinTW/rc/develop/sublime-text-3/sublime_imfix.c
   sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
   cd -
 fi
