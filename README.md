@@ -16,6 +16,13 @@ or wget (for most UNIX platforms):
 
      wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
 
+
+Install all Env
+---------------
+
+wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | sh
+
+
 License
 -------
 
