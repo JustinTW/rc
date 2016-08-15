@@ -138,6 +138,11 @@ fi
 
 # sublime installer
 sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
+if [ ! -h "$sublInstallPackage" ]; then
+  mv "$sublInstallPackage" "$sublInstallPackage"_origin
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Installed Packages" "$sublInstallPackage"
+fi
+
 sublPkg="Package Control.sublime-package"
 if [ ! -f "$sublInstallPackage/$sublPkg" ]; then
   wget -O "$sublInstallPackage/$sublPkg" https://packagecontrol.io/Package%20Control.sublime-package
