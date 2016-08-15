@@ -37,6 +37,11 @@ if [ ! $? -eq 0 ]; then
   sudo add-apt-repository ppa:webupd8team/sublime-text-3 -y
 fi
 
+apt-key list |grep otto-kesselgulasch &> /dev/null
+if [ ! $? -eq 0 ]; then
+  sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
+fi
+
 apt-key list |grep Google &> /dev/null
 if [ ! $? -eq 0 ]; then
   sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -56,7 +61,7 @@ sudo apt install -q -y --fix-missing \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
   fcitx fcitx-chewing sublime-text-installer autofs nfs-common\
   xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina \
-  build-essential libgtk2.0-dev
+  build-essential libgtk2.0-dev gimp
 
 sudo apt install -f -y -q
 
