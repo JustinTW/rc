@@ -20,7 +20,7 @@ or wget (for most UNIX platforms):
 Install all Env
 ---------------
 
-    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | sh
+    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | bash
 
 
 License
