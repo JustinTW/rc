@@ -125,6 +125,16 @@ if [ ! -f '/etc/auto.direct' ]; then
 fi
 sudo service autofs restart
 
+# terminator
+terminatorConf="/home/$sUserName/.config/terminator/config"
+if [ ! -h "$terminatorConf" ]; then
+  mkdir -p "/home/$sUserName/.config/terminator"
+  if [ ! -f "$terminatorConf" ]; then
+    mv "$terminatorConf" "$terminatorConf"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/terminator.conf" "$terminatorConf"
+fi
+
 # sublime cht input
 if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
   cd /opt/sublime_text
@@ -136,14 +146,40 @@ if ! grep -q 'libsublime-imfix.so' /usr/share/applications/sublime-text.desktop 
   sudo -u root sed -i -e "s/\/opt\/sublime_text\/sublime_text/bash -c 'LD_PRELOAD=\/opt\/sublime_text\/libsublime-imfix.so \/opt\/sublime_text\/sublime_text'/g" /usr/share/applications/sublime-text.desktop
 fi
 
-# sublime installer
+# link sublime packages
 sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
 if [ ! -h "$sublInstallPackage" ]; then
-  mv "$sublInstallPackage" "$sublInstallPackage"_origin
+  if [ ! -f "$sublInstallPackage" ]; then
+    mv "$sublInstallPackage" "$sublInstallPackage"_origin
+  fi
   ln -sf "/home/$sUserName/.rc/sublime-text-3/Installed Packages" "$sublInstallPackage"
 fi
 
-sublPkg="Package Control.sublime-package"
-if [ ! -f "$sublInstallPackage/$sublPkg" ]; then
-  wget -O "$sublInstallPackage/$sublPkg" https://packagecontrol.io/Package%20Control.sublime-package
+# link sublime settings
+sublSettings="/home/$sUserName/.config/sublime-text-3/Packages/User"
+preferences="Preferences.sublime-settings"
+if [ ! -h "$sublSettings/$preferences" ]; then
+  if [ ! -f "$sublSettings/$preferences" ]; then
+    mv "$sublSettings/$preferences" "$sublSettings/$preferences"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
 fi
+
+# link key bind
+preferences="Default (Linux).sublime-keymap"
+if [ ! -h "$sublSettings/$preferences" ]; then
+  if [ ! -f "$sublSettings/$preferences" ]; then
+    mv "$sublSettings/$preferences" "$sublSettings/$preferences"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
+fi
+
+# link AutoPEP8
+preferences="AutoPep8.sublime-settings"
+if [ ! -h "$sublSettings/$preferences" ]; then
+  if [ ! -f "$sublSettings/$preferences" ]; then
+    mv "$sublSettings/$preferences" "$sublSettings/$preferences"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
+fi
+
