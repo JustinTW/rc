@@ -55,7 +55,8 @@ sudo apt install -q -y --fix-missing \
   unzip git zsh curl vim tmux ssh google-chrome-stable \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
   fcitx fcitx-chewing sublime-text-installer autofs nfs-common\
-  xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina
+  xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina \
+  build-essential libgtk2.0-dev
 
 sudo apt install -f -y -q
 
@@ -123,3 +124,21 @@ if [ ! -f '/etc/auto.direct' ]; then
   sudo /bin/su -c "echo '/mnt/drive/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
 fi
 sudo service autofs restart
+
+# sublime cht input
+if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
+  cd /opt/sublime_text
+  sudo wget -O sublime_imfix.c https://raw.githubusercontent.com/JustinTW/rc/develop/sublime/sublime_imfix.c
+  sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
+  cd -
+fi
+if ! grep -q 'libsublime-imfix.so' /usr/share/applications/sublime-text.desktop ; then
+  sudo -u root sed -i -e "s/\/opt\/sublime_text\/sublime_text/bash -c 'LD_PRELOAD=\/opt\/sublime_text\/libsublime-imfix.so \/opt\/sublime_text\/sublime_text'/g" /usr/share/applications/sublime-text.desktop
+fi
+
+# sublime installer
+sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
+sublPkg="Package Control.sublime-package"
+if [ ! -f "$sublInstallPackage/$sublPkg" ]; then
+  wget -O "$sublInstallPackage/$sublPkg" https://packagecontrol.io/Package%20Control.sublime-package
+fi
