@@ -98,7 +98,7 @@ fi
 
 # auto mount
 if ! grep -q '/etc/auto.direct' /etc/auto.master ; then
-  sudo /bin/su -c "echo '+auto.master\n/- /etc/auto.direct' >> /etc/auto.master"
+  sudo /bin/su -c "echo '\n/- /etc/auto.direct' >> /etc/auto.master"
 fi
 
 sudo service autofs stop
@@ -109,8 +109,8 @@ if [ ! -f '/etc/auto.direct' ]; then
   sudo mkdir -p /mnt/nas/justin.liu
   sudo mkdir -p /mnt/nas/ubuntu
   sudo mkdir -p /mnt/drive/justin.liu
-  sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
-  sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
+  #sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
+  #sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/nas/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 nas:/justin.liu' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/nas/ubuntu -rw,bg,soft,rsize=32768, wsize=32768 nas:/ubuntu' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/drice/justin.liu -rw,bg,soft,rsize=32768, wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
