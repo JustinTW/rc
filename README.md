@@ -10,17 +10,17 @@ ONE-STEP INSTALL
 
 Use curl (for Mac OS X):
 
-     curl -o - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
+    curl -o - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
 
 or wget (for most UNIX platforms):
 
-     wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
+    wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
 
 
 Install all Env
 ---------------
 
-wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | sh
+    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | sh
 
 
 License
