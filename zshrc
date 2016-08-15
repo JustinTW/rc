@@ -199,6 +199,27 @@ ssh $SSHUSER@$1 -t "sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=
 ssh $SSHUSER@$1 -t sudo tmux
 }
 
+function bsn(){
+if [ ! -z "$1" ]; then
+sudo btrfs subvolume snapshot /mnt/btrfs/@home /mnt/btrfs/@home-`date "+%Y-%m%d-%H%M"`-$1
+sudo btrfs subvolume snapshot /mnt/btrfs/@root /mnt/btrfs/@root-`date "+%Y-%m%d-%H%M"`-$1
+sudo btrfs subvolume list /mnt/btrfs
+else
+echo "Please input name, eg: bsn init-snapshot"
+sudo btrfs subvolume list /mnt/btrfs
+fi
+}
+
+function bsnd(){
+if [ ! -z "$1" ]; then
+sudo btrfs subvolume delete /mnt/btrfs/@home-$1
+sudo btrfs subvolume delete /mnt/btrfs/@root-$1
+sudo btrfs subvolume list /mnt/btrfs
+else
+echo "Please input name for delete, eg: bsnd init-snapshot"
+fi
+}
+
 function gcms(){
 git commit -m "update submodules"
 }
