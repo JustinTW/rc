@@ -152,6 +152,8 @@ if ! grep -q 'libsublime-imfix.so' /usr/share/applications/sublime-text.desktop 
 fi
 
 # link sublime packages
+/usr/bin/subl
+pkill -9 sublime_text
 sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
 if [ ! -h "$sublInstallPackage" ]; then
   if [ ! -f "$sublInstallPackage" ]; then
