@@ -76,6 +76,13 @@ if ! grep -q 'set nu' /etc/vim/vimrc ; then
   sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
 fi
 
+# network
+
+if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
+  sudo /bin/su -c "echo 'dns-search hopebaytech.com' >> /etc/network/interfaces"
+  service networking restart
+fi
+
 # install my rc file
 if [ ! -d "/home/$sUserName/.rc" ]; then
   wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh
@@ -109,10 +116,10 @@ if [ ! -f '/etc/auto.direct' ]; then
   sudo mkdir -p /mnt/nas/justin.liu
   sudo mkdir -p /mnt/nas/ubuntu
   sudo mkdir -p /mnt/drive/justin.liu
-  #sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
-  #sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/nas/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 nas:/justin.liu' >> /etc/auto.direct"
-  sudo /bin/su -c "echo '/mnt/nas/ubuntu -rw,bg,soft,rsize=32768, wsize=32768 nas:/ubuntu' >> /etc/auto.direct"
-  sudo /bin/su -c "echo '/mnt/drice/justin.liu -rw,bg,soft,rsize=32768, wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/nas/ubuntu -rw,bg,soft,rsize=32768,wsize=32768 nas:/ubuntu' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/drive/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
 fi
 sudo service autofs restart
