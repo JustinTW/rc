@@ -54,11 +54,8 @@ sudo apt upgrade -y -q
 sudo apt install -q -y --fix-missing \
   unzip git zsh curl vim tmux ssh google-chrome-stable \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
-  fcitx fcitx-chewing sublime-text-installer \
+  fcitx fcitx-chewing sublime-text-installer autofs nfs-common\
   xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina
-
-  
-  
 
 sudo apt install -f -y -q
 
@@ -80,10 +77,14 @@ if ! grep -q 'set nu' /etc/vim/vimrc ; then
 fi
 
 # install my rc file
-if [ ! -d "/home/$sUserName/.rc" ] ; then
+if [ ! -d "/home/$sUserName/.rc" ]; then
   wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh
   chsh -s /usr/bin/zsh $sUserName
-  sudo -u root wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh
+fi
+
+sudo ls -al /root/.rc &> /dev/null
+if [ ! $? -eq 0 ]; then
+  sudo /bin/su -c  "wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh"
   sudo -u root chsh -s /usr/bin/zsh root
 fi
 
@@ -95,5 +96,23 @@ if [ ! -d "/home/$sUserName/.xmonad" ]; then
   cd /home/$sUserName/.xmonad && ./install-xmonad && cd -
 fi
 
+# auto mount
+if ! grep -q '/etc/auto.direct' /etc/auto.master ; then
+  sudo /bin/su -c "echo '+auto.master\n/- /etc/auto.direct' >> /etc/auto.master"
+fi
 
+sudo service autofs stop
 
+if [ ! -f '/etc/auto.direct' ]; then
+  sudo mkdir -p /mnt/disk
+  sudo mkdir -p /mnt/btrfs
+  sudo mkdir -p /mnt/nas/justin.liu
+  sudo mkdir -p /mnt/nas/ubuntu
+  sudo mkdir -p /mnt/drive/justin.liu
+  sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/nas/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 nas:/justin.liu' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/nas/ubuntu -rw,bg,soft,rsize=32768, wsize=32768 nas:/ubuntu' >> /etc/auto.direct"
+  sudo /bin/su -c "echo '/mnt/drice/justin.liu -rw,bg,soft,rsize=32768, wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
+fi
+sudo service autofs restart
