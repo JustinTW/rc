@@ -215,13 +215,13 @@ echo 'Setup Sublime cht input finish !'
 echo 'Next: Link Sublime Packages !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
-sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
-if [ ! -h "$sublInstallPackage" ]; then
-  if [ ! -f "$sublInstallPackage" ]; then
-    mv "$sublInstallPackage" "$sublInstallPackage"_origin
-  fi
-  ln -sf "/home/$sUserName/.rc/sublime-text-3/Installed Packages" "$sublInstallPackage"
-fi
+# sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
+# if [ ! -h "$sublInstallPackage" ]; then
+#   if [ ! -f "$sublInstallPackage" ]; then
+#     mv "$sublInstallPackage" "$sublInstallPackage"_origin
+#   fi
+#   ln -sf "/home/$sUserName/.rc/sublime-text-3/Installed Packages" "$sublInstallPackage"
+# fi
 
 # link sublime settings
 sublSettings="/home/$sUserName/.config/sublime-text-3/Packages/User"
