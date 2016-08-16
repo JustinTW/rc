@@ -42,6 +42,11 @@ if [ ! $? -eq 0 ]; then
   sudo add-apt-repository ppa:otto-kesselgulasch/gimp -y
 fi
 
+apt-key list |grep gekkio &> /dev/null
+if [ ! $? -eq 0 ]; then
+  sudo add-apt-repository ppa:gekkio/xmonad -y
+fi
+
 apt-key list |grep Google &> /dev/null
 if [ ! $? -eq 0 ]; then
   sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -71,7 +76,7 @@ sudo apt install -y --fix-missing \
   unzip git zsh curl vim tmux ssh google-chrome-stable \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
   fcitx fcitx-chewing sublime-text-installer autofs nfs-common \
-  xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina \
+  xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina gnome-session-xmonad \
   build-essential libgtk2.0-dev gimp
 
 echo 'Packages install success !'
