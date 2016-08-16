@@ -48,12 +48,15 @@ if [ ! $? -eq 0 ]; then
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main" > /etc/apt/sources.list.d/google-chrome.list'
 fi
 
-
 # update apt
 sudo apt update
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # upgrade
 sudo apt upgrade -y -q
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # install
 sudo apt install -q -y --fix-missing \
@@ -63,7 +66,11 @@ sudo apt install -q -y --fix-missing \
   xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina \
   build-essential libgtk2.0-dev gimp
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 sudo apt install -f -y -q
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # setup
 
@@ -77,10 +84,14 @@ if ! grep -q "AllowUsers $sUserName" /etc/ssh/sshd_config ; then
 fi
 sudo service ssh restart
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # vim
 if ! grep -q 'set nu' /etc/vim/vimrc ; then
   sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
 fi
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # network
 
@@ -89,17 +100,23 @@ if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
   service networking restart
 fi
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # install my rc file
 if [ ! -d "/home/$sUserName/.rc" ]; then
   wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh
   chsh -s /usr/bin/zsh $sUserName
 fi
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 sudo ls -al /root/.rc &> /dev/null
 if [ ! $? -eq 0 ]; then
   sudo /bin/su -c  "wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh"
   sudo -u root chsh -s /usr/bin/zsh root
 fi
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # config fcitx
 echo "please choose fcitx"
@@ -108,6 +125,8 @@ if [ ! -d "/home/$sUserName/.xmonad" ]; then
   git clone https://github.com/JustinTW/xmonad-ubuntu-conf.git /home/$sUserName/.xmonad
   cd /home/$sUserName/.xmonad && ./install-xmonad && cd -
 fi
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # auto mount
 if ! grep -q '/etc/auto.direct' /etc/auto.master ; then
@@ -130,6 +149,8 @@ if [ ! -f '/etc/auto.direct' ]; then
 fi
 sudo service autofs restart
 
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # terminator
 terminatorConf="/home/$sUserName/.config/terminator/config"
 if [ ! -h "$terminatorConf" ]; then
@@ -139,6 +160,8 @@ if [ ! -h "$terminatorConf" ]; then
   fi
   ln -sf "/home/$sUserName/.rc/terminator.conf" "$terminatorConf"
 fi
+
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # sublime cht input
 if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
@@ -153,7 +176,13 @@ fi
 
 # link sublime packages
 /usr/bin/subl
+/bin/sleep 3
 pkill -9 sublime_text
+
+read -rsp $'Press any key to continue...\n' -n1 key
+read -rsp $'Press any key to continue...\n' -n1 key
+read -rsp $'Press any key to continue...\n' -n1 key
+
 sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
 if [ ! -h "$sublInstallPackage" ]; then
   if [ ! -f "$sublInstallPackage" ]; then
