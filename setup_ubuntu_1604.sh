@@ -48,28 +48,40 @@ if [ ! $? -eq 0 ]; then
   sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb stable main" > /etc/apt/sources.list.d/google-chrome.list'
 fi
 
+echo 'Add apt repositories finish !'
+echo 'Next: Update apt !'
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # update apt
 sudo apt update
 
+echo 'Update apt finish !'
+echo 'Next: Upgrade packages !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # upgrade
 sudo apt upgrade -y -q
 
+echo 'Upgrade finish, reboot is recommand !'
+echo 'Next: Install packages !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # install
-sudo apt install -q -y --fix-missing \
+sudo apt install -y --fix-missing \
   unzip git zsh curl vim tmux ssh google-chrome-stable \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
-  fcitx fcitx-chewing sublime-text-installer autofs nfs-common\
+  fcitx fcitx-chewing sublime-text-installer autofs nfs-common \
   xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina \
   build-essential libgtk2.0-dev gimp
 
+echo 'Packages install success !'
+echo 'Next: Force install !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
-sudo apt install -f -y -q
+sudo apt install -f -y
 
+echo 'Packages force install success !'
+echo 'Next: Setup ssh !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # setup
@@ -84,6 +96,8 @@ if ! grep -q "AllowUsers $sUserName" /etc/ssh/sshd_config ; then
 fi
 sudo service ssh restart
 
+echo 'Setup ssh security finish !'
+echo 'Next: Setup vim !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # vim
@@ -91,6 +105,8 @@ if ! grep -q 'set nu' /etc/vim/vimrc ; then
   sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
 fi
 
+echo 'Setup vim finish !'
+echo 'Next: Setup network !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # network
@@ -100,6 +116,8 @@ if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
   service networking restart
 fi
 
+echo 'Setup network finish !'
+echo 'Next: Setup zsh !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # install my rc file
@@ -108,6 +126,8 @@ if [ ! -d "/home/$sUserName/.rc" ]; then
   chsh -s /usr/bin/zsh $sUserName
 fi
 
+echo 'Setup zsh env finish !'
+echo 'Next: Setup root zsh !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 sudo ls -al /root/.rc &> /dev/null
@@ -116,16 +136,17 @@ if [ ! $? -eq 0 ]; then
   sudo -u root chsh -s /usr/bin/zsh root
 fi
 
+echo 'Setup zsh for root finish !'
+echo 'Next: Setup xmonad !'
 read -rsp $'Press any key to continue...\n' -n1 key
-
-# config fcitx
-echo "please choose fcitx"
 
 if [ ! -d "/home/$sUserName/.xmonad" ]; then
   git clone https://github.com/JustinTW/xmonad-ubuntu-conf.git /home/$sUserName/.xmonad
   cd /home/$sUserName/.xmonad && ./install-xmonad && cd -
 fi
 
+echo 'Setup xmonad finish !'
+echo 'Next: Setup autofs !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # auto mount
@@ -140,15 +161,15 @@ if [ ! -f '/etc/auto.direct' ]; then
   sudo mkdir -p /mnt/btrfs
   sudo mkdir -p /mnt/nas/justin.liu
   sudo mkdir -p /mnt/nas/ubuntu
-  sudo mkdir -p /mnt/drive/justin.liu
   sudo /bin/su -c "echo '/mnt/disk -fstype=btrfs :/dev/sdb1' > /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/btrfs -fstype=btrfs :/dev/sda1' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/nas/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 nas:/justin.liu' >> /etc/auto.direct"
   sudo /bin/su -c "echo '/mnt/nas/ubuntu -rw,bg,soft,rsize=32768,wsize=32768 nas:/ubuntu' >> /etc/auto.direct"
-  sudo /bin/su -c "echo '/mnt/drive/justin.liu -rw,bg,soft,rsize=32768,wsize=32768 drive:/justin.liu_local' >> /etc/auto.direct"
 fi
 sudo service autofs restart
 
+echo 'Setup autofs finish !'
+echo 'Next: Setup terminator !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # terminator
@@ -161,6 +182,8 @@ if [ ! -h "$terminatorConf" ]; then
   ln -sf "/home/$sUserName/.rc/terminator.conf" "$terminatorConf"
 fi
 
+echo 'Setup terminator finish !'
+echo 'Next: Fix sublime cht input !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # sublime cht input
@@ -174,13 +197,17 @@ if ! grep -q 'libsublime-imfix.so' /usr/share/applications/sublime-text.desktop 
   sudo -u root sed -i -e "s/\/opt\/sublime_text\/sublime_text/bash -c 'LD_PRELOAD=\/opt\/sublime_text\/libsublime-imfix.so \/opt\/sublime_text\/sublime_text'/g" /usr/share/applications/sublime-text.desktop
 fi
 
+echo 'Setup Sublime cht input finish !'
+echo 'Next: Open Sublime !'
+read -rsp $'Press any key to continue...\n' -n1 key
+
 # link sublime packages
 /usr/bin/subl
 /bin/sleep 3
 pkill -9 sublime_text
 
-read -rsp $'Press any key to continue...\n' -n1 key
-read -rsp $'Press any key to continue...\n' -n1 key
+echo 'Setup Sublime cht input finish !'
+echo 'Next: Link Sublime Packages !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
