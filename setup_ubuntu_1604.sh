@@ -77,7 +77,7 @@ sudo apt install -y --fix-missing \
   gnome-panel gnome-flashback gnome-session-flashback indicator-applet-appmenu \
   fcitx fcitx-chewing sublime-text-installer autofs nfs-common \
   xmonad libghc-xmonad-contrib-dev xmobar xcompmgr nitrogen stalonetray moreutils synapse ssh-askpass-gnome thunar terminator remmina gnome-session-xmonad \
-  build-essential libgtk2.0-dev gimp
+  build-essential libgtk2.0-dev gimp unar
 
 echo 'Packages install success !'
 echo 'Next: Force install !'

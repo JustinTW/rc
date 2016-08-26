@@ -1,5 +1,5 @@
 {
-    "max-line-length": 79,
+    "max-line-length": 255,
 
     // list codes for fixes; used by --ignore and --select
     "list-fixes": "",
@@ -16,7 +16,7 @@
     // number of spaces per indent level
     "indent-size": 4,
 
-    "format_on_save": false,
+    "format_on_save": true,
     "show_output_panel": true,
     // Format/Preview menu items only appear for views
     // with syntax from `syntax_list`

@@ -14,7 +14,7 @@
 	],
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
-	"tab_size": 2,
+	"tab_size": 4,
 	"theme": "Flatland Dark.sublime-theme",
 	"trim_trailing_white_space_on_save": true,
 	"update_check": false,
