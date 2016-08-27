@@ -220,6 +220,20 @@ echo "Please input name for delete, eg: bsnd init-snapshot"
 fi
 }
 
+function bsnr(){
+if [ ! -z "$1" ]; then
+sudo mv /mnt/btrfs/@home /mnt/btrfs/@home-bad-`date "+%Y-%m%d-%H%M"`
+sudo mv /mnt/btrfs/@root /mnt/btrfs/@root-bad-`date "+%Y-%m%d-%H%M"`
+sudo mv /mnt/btrfs/@home-$1 /mnt/btrfs/@home
+sudo mv /mnt/btrfs/@root-$1 /mnt/btrfs/@root
+sudo ls /mnt/btrfs
+sudo btrfs subvolume list /mnt/btrfs
+else
+echo "Please input name for delete, eg: bsnd init-snapshot"
+fi
+}
+
+
 function gcms(){
 git commit -m "update submodules"
 }
