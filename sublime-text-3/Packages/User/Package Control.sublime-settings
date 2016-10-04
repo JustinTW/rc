@@ -1,0 +1,32 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Alignment",
+		"All Autocomplete",
+		"AutoPEP8",
+		"Babel",
+		"Better CoffeeScript",
+		"BracketHighlighter",
+		"ChangeQuotes",
+		"Color Highlighter",
+		"DocBlockr",
+		"Dockerfile Syntax Highlighting",
+		"Emmet",
+		"Git",
+		"GitGutter",
+		"Gitignore",
+		"Gitignored File Excluder",
+		"Haml",
+		"JsFormat",
+		"Package Control",
+		"Puppet",
+		"SideBarEnhancements",
+		"Tag",
+		"Theme - Flatland",
+		"Xdebug Client"
+	]
+}

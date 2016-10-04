@@ -212,16 +212,16 @@ read -rsp $'Press any key to continue...\n' -n1 key
 pkill -9 sublime_text
 
 echo 'Setup Sublime cht input finish !'
-echo 'Next: Link Sublime Packages !'
+echo 'Next: Setup Sublime Packages !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
-# sublInstallPackage="/home/$sUserName/.config/sublime-text-3/Installed Packages"
-# if [ ! -h "$sublInstallPackage" ]; then
-#   if [ ! -f "$sublInstallPackage" ]; then
-#     mv "$sublInstallPackage" "$sublInstallPackage"_origin
-#   fi
-#   ln -sf "/home/$sUserName/.rc/sublime-text-3/Installed Packages" "$sublInstallPackage"
-# fi
+# setup sublime package control
+mkdir -p "/home/$sUserName/.config/sublime-text-3/Installed Packages"
+wget https://packagecontrol.io/Package%20Control.sublime-package -P "/home/$sUserName/.config/sublime-text-3/Installed Packages"
+
+echo 'Setup Sublime Packages finish !'
+echo 'Next: link sublime settings'
+read -rsp $'Press any key to continue...\n' -n1 key
 
 # link sublime settings
 sublSettings="/home/$sUserName/.config/sublime-text-3/Packages/User"
@@ -251,3 +251,27 @@ if [ ! -h "$sublSettings/$preferences" ]; then
   ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
 fi
 
+# link snippet pdb
+preferences="pdb.sublime-snippet"
+if [ ! -h "$sublSettings/$preferences" ]; then
+  if [ ! -f "$sublSettings/$preferences" ]; then
+    mv "$sublSettings/$preferences" "$sublSettings/$preferences"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
+fi
+
+# link sublime settings
+preferences="Package Control.sublime-settings"
+if [ ! -h "$sublSettings/$preferences" ]; then
+  if [ ! -f "$sublSettings/$preferences" ]; then
+    mv "$sublSettings/$preferences" "$sublSettings/$preferences"_origin
+  fi
+  ln -sf "/home/$sUserName/.rc/sublime-text-3/Packages/User/$preferences" "$sublSettings/$preferences"
+fi
+
+echo 'link sublime settings finish !'
+echo 'Next: Open sublime text and wait for package install'
+read -rsp $'Press any key to continue...\n' -n1 key
+
+# open sublime-text, this should auto install sublime packages
+/usr/bin/subl
