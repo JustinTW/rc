@@ -1,0 +1,25 @@
+0_package_control_loader.sublime-package
+Alignment.sublime-package
+All Autocomplete.sublime-package
+AutoPEP8.sublime-package
+Better CoffeeScript.sublime-package
+BracketHighlighter.sublime-package
+ChangeQuotes.sublime-package
+Color Highlighter.sublime-package
+DocBlockr.sublime-package
+Dockerfile Syntax Highlighting.sublime-package
+Emmet.sublime-package
+Git.sublime-package
+GitGutter.sublime-package
+Gitignore.sublime-package
+Gitignored File Excluder.sublime-package
+Haml.sublime-package
+JsFormat.sublime-package
+Package Control.sublime-package
+Puppet.sublime-package
+PyV8
+SideBarEnhancements.sublime-package
+Tag.sublime-package
+Theme - Flatland.sublime-package
+Xdebug Client.sublime-package
+
