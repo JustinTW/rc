@@ -17,10 +17,15 @@ or wget (for most UNIX platforms):
     wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh | sh
 
 
-Install all Env
+Install all enviornment for desktop
 ---------------
 
-    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604.sh | bash
+    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604_desktop.sh | bash
+
+Install all enviornment for server
+---------------
+
+    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604_server.sh | bash
 
 
 License

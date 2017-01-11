@@ -1,5 +1,5 @@
 #!/bin/bash
-sUserName=robo
+sUserName=$(whoami)
 
 sudo dpkg --remove-architecture i386 || true
 
