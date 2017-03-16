@@ -192,7 +192,7 @@ return
 
 function sss(){
 SSHUSER="hopebayadmin"
-SSPASSWORD="SSPASSWORD"
+SSPASSWORD="YaNoVmG5"
 ssh-keygen -f "/home/robo/.ssh/known_hosts" -R $1 || true
 sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$1 2>/dev/null && \
 ssh $SSHUSER@$1 -t "sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers" && \
@@ -207,6 +207,10 @@ else
 echo "Please input name, eg: bsn init-snapshot"
 fi
 sudo btrfs subvolume list /mnt/btrfs
+}
+
+function bsnb(){
+sudo btrfs balance start -m /mnt/btrfs
 }
 
 function bsnd(){

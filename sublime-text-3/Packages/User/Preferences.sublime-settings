@@ -1,6 +1,25 @@
 {
 	"Seti_mouse_wheel_tabswitch": true,
 	"Seti_no_bar_undertabs": true,
+	"binary_file_patterns":
+	[
+		"*.dds",
+		"*.eot",
+		"*.gif",
+		"*.ico",
+		"*.jar",
+		"*.jpeg",
+		"*.jpg",
+		"*.pdf",
+		"*.png",
+		"*.swf",
+		"*.tga",
+		"*.ttf",
+		"*.zip",
+		"/home/robo/workspace/tf/teraclient-devops/src/docs/_build/**",
+		"/home/robo/workspace/tf/teraclient-devops/src/node_modules/**",
+		"/home/robo/workspace/tf/teraclient-devops/src/static/*.hot-update*"
+	],
 	"bold_folder_labels": true,
 	"color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",
 	"extra_file_exclude_patterns":
