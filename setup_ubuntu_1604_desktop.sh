@@ -110,6 +110,11 @@ if ! grep -q 'set nu' /etc/vim/vimrc ; then
   sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
 fi
 
+# vim
+if ! grep -q 'set mouse-=a' /etc/vim/vimrc ; then
+  sudo /bin/su -c "echo 'set mouse-=a' >> /etc/vim/vimrc"
+fi
+
 echo 'Setup vim finish !'
 echo 'Next: Setup network !'
 read -rsp $'Press any key to continue...\n' -n1 key
@@ -127,7 +132,7 @@ read -rsp $'Press any key to continue...\n' -n1 key
 
 # install my rc file
 if [ ! -d "/home/$sUserName/.rc" ]; then
-  wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh
+  wget -O /tmp/install_rc.sh https://raw.github.com/JustinTW/rc/develop/auto-install.sh && bash /tmp/install_rc.sh
   chsh -s /usr/bin/zsh $sUserName
 fi
 
@@ -137,7 +142,7 @@ read -rsp $'Press any key to continue...\n' -n1 key
 
 sudo ls -al /root/.rc &> /dev/null
 if [ ! $? -eq 0 ]; then
-  sudo /bin/su -c  "wget -O - https://raw.github.com/JustinTW/rc/develop/auto-install.sh |sh"
+  sudo /bin/su -c  "wget -O /tmp/install_rc.sh https://raw.github.com/JustinTW/rc/develop/auto-install.sh && bash /tmp/install_rc.sh"
   sudo -u root chsh -s /usr/bin/zsh root
 fi
 

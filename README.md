@@ -20,13 +20,12 @@ or wget (for most UNIX platforms):
 Install all enviornment for desktop
 ---------------
 
-    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604_desktop.sh | bash
+    wget -O /tmp/install_env.sh https://goo.gl/TBFE2J && bash /tmp/install_env.sh
 
 Install all enviornment for server
 ---------------
 
-    wget -O - https://raw.github.com/JustinTW/rc/develop/setup_ubuntu_1604_server.sh | bash
-
+	wget -O /tmp/install_env.sh https://goo.gl/UoV6Vt && bash /tmp/install_env.sh
 
 License
 -------

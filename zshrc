@@ -211,6 +211,12 @@ sudo btrfs subvolume list /mnt/btrfs
 
 function bsnb(){
 sudo btrfs balance start -m /mnt/btrfs
+sudo btrfs fi show
+sudo btrfs fi df /mount/point
+sudo btrfs fi balance start -dusage=10 /mount/point
+sudo btrfs fi show
+sudo btrfs fi balance start /mnt/btrfs
+sudo btrfs fi show
 }
 
 function bsnd(){
