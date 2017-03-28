@@ -16,9 +16,13 @@
 		"*.tga",
 		"*.ttf",
 		"*.zip",
+		"/home/robo/workspace/arkease/devops/data/core/**",
+		"/home/robo/workspace/arkease/devops/data/development/mariadb/**",
+		"/home/robo/workspace/arkease/devops/src/arkease-pro-core/src/3rdparty/**",
 		"/home/robo/workspace/tf/teraclient-devops/src/docs/_build/**",
 		"/home/robo/workspace/tf/teraclient-devops/src/node_modules/**",
-		"/home/robo/workspace/tf/teraclient-devops/src/static/*.hot-update*"
+		"/home/robo/workspace/tf/teraclient-devops/src/static/*.hot-update*",
+		"3rdparty/**"
 	],
 	"bold_folder_labels": true,
 	"color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",
