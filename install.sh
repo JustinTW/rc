@@ -1,7 +1,7 @@
 #!/bin/bash
 RC_HOME=`pwd`
 cd ..
-for TARGET in zshrc screenrc psqlrc tmux.conf gitconfig;
+for TARGET in zshrc screenrc psqlrc tmux.conf gitconfig vimrc;
 do
    if [ -e ".$TARGET" ]; then
       mv ".$TARGET" ".$TARGET.old"
