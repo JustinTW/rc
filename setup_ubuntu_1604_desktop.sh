@@ -197,12 +197,13 @@ echo 'Next: Fix sublime cht input !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # sublime cht input
-if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
-  cd /opt/sublime_text
-  sudo wget -O sublime_imfix.c https://raw.githubusercontent.com/JustinTW/rc/develop/sublime-text-3/sublime_imfix.c
+#if [ ! -f '/opt/sublime_text/libsublime-imfix.so' ]; then
+cd /opt/sublime_text
+sudo wget -O sublime_imfix.c https://raw.githubusercontent.com/JustinTW/rc/develop/sublime-text-3/sublime_imfix.c
   sudo gcc -shared -o libsublime-imfix.so sublime_imfix.c  `pkg-config --libs --cflags gtk+-2.0` -fPIC
-  cd -
-fi
+cd -
+#fi
+
 if ! grep -q 'libsublime-imfix.so' /usr/share/applications/sublime-text.desktop ; then
   sudo -u root sed -i -e "s/\/opt\/sublime_text\/sublime_text/bash -c 'LD_PRELOAD=\/opt\/sublime_text\/libsublime-imfix.so \/opt\/sublime_text\/sublime_text'/g" /usr/share/applications/sublime-text.desktop
 fi
