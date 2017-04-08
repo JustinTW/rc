@@ -192,7 +192,7 @@ return
 
 function sss(){
 SSHUSER="hopebayadmin"
-SSPASSWORD="YaNoVmG5"
+SSPASSWORD="PASSWORD"
 ssh-keygen -f "/home/robo/.ssh/known_hosts" -R $1 || true
 sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$1 2>/dev/null && \
 ssh $SSHUSER@$1 -t "sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers" && \
@@ -212,8 +212,8 @@ sudo btrfs subvolume list /mnt/btrfs
 function bsnb(){
 sudo btrfs balance start -m /mnt/btrfs
 sudo btrfs fi show
-sudo btrfs fi df /mount/point
-sudo btrfs fi balance start -dusage=10 /mount/point
+sudo btrfs fi df /mnt/btrfs
+sudo btrfs fi balance start -dusage=10 /mnt/btrfs
 sudo btrfs fi show
 sudo btrfs fi balance start /mnt/btrfs
 sudo btrfs fi show
