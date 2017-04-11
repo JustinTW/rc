@@ -191,10 +191,10 @@ return
 }
 
 function sss(){
-source PWD
+source ~/.rc/PWD
 SSHUSER="$PROD_USER"
 SSPASSWORD="$PROD_PWD"
-ssh-keygen -f "/home/robo/.ssh/known_hosts" -R $1 || true
+ssh-keygen -f "~/.ssh/known_hosts" -R $1 || true
 sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$1 2>/dev/null && \
 ssh $SSHUSER@$1 -t "sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers" && \
 ssh $SSHUSER@$1 -t sudo tmux
