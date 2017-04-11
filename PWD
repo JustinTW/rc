@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PROD_USER="hopebayadmin"
+PROD_PWD="Passowrd"
+
+IT_USER="hopebayadmin"
+IT_PWD="Passowrd"

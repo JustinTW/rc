@@ -102,8 +102,8 @@
 	"line_padding_bottom": 1,
 	"line_padding_top": 1,
 	"tab_size": 2,
-	"translate_tabs_to_spaces": true,
 	"theme": "Flatland Dark.sublime-theme",
+	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"update_check": false,
 	"word_wrap": true
