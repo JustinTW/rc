@@ -105,22 +105,7 @@ echo 'Setup ssh security finish !'
 echo 'Next: Setup vim !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
-# vim
-if ! grep -q 'set nu' /etc/vim/vimrc ; then
-  sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
-fi
-
-# vim
-if ! grep -q 'set mouse-=a' /etc/vim/vimrc ; then
-  sudo /bin/su -c "echo 'set mouse-=a' >> /etc/vim/vimrc"
-fi
-
-echo 'Setup vim finish !'
-echo 'Next: Setup network !'
-read -rsp $'Press any key to continue...\n' -n1 key
-
 # network
-
 if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
   sudo /bin/su -c "echo 'dns-search hopebaytech.com' >> /etc/network/interfaces"
   service networking restart
