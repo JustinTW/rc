@@ -4,7 +4,11 @@ sUserName=$(whoami)
 sudo dpkg --remove-architecture i386 || true
 
 # visudo
+# ubuntu 16.04
 sudo -u root sed -i -e 's/%sudo   ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+# ubuntu 16.04.2
+sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo       ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # add repositories
 apt-key list |grep git-core &> /dev/null
