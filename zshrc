@@ -201,15 +201,13 @@ sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t "echo $SSPASSWORD | sudo -S 
 sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t sudo tmux
 }
 
-function sssit(){
+function sst(){
 source ~/.rc/PWD
 SSHUSER="$IT_USER"
 SSPASSWORD="$IT_PWD"
 DEST_HOST=$1
 ssh-keygen -f "~/.ssh/known_hosts" -R $DEST_HOST || true
-sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$DEST_HOST 2>/dev/null
-sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t "echo $SSPASSWORD | sudo -S sed -i -e 's/%sudo  ALL=(ALL:ALL) ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers"
-sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t sudo tmux
+sshpass -p "$SSPASSWORD" ssh -o StrictHostKeyChecking=no $SSHUSER@$DEST_HOST -p 2200 -t sudo tmux
 }
 
 function bsn(){
