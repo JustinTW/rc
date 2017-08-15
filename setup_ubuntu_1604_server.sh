@@ -6,7 +6,6 @@ sudo dpkg --remove-architecture i386 || true
 # visudo
 # ubuntu 16.04
 sudo -u root sed -i -e 's/%sudo   ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers
-
 # ubuntu 16.04.2
 sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo       ALL=NOPASSWD:ALL/g' /etc/sudoers
 
@@ -82,6 +81,20 @@ if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
 fi
 
 echo 'Setup network finish !'
+echo 'Next: Setup trash-cli !'
+read -rsp $'Press any key to continue...\n' -n1 key
+
+# install trash-cli
+command -v trash-list &>/dev/null
+if [[ ! $? -eq 0 ]]; then
+  cd /tmp
+  git clone https://github.com/andreafrancia/trash-cli.git
+  cd trash-cli
+  sudo python setup.py install
+  cd --
+fi
+
+echo 'Setup trash-cli finish!'
 echo 'Next: Setup zsh !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
