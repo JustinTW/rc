@@ -23,6 +23,7 @@
 		"Haml",
 		"Jade",
 		"JsFormat",
+		"JSLint",
 		"Package Control",
 		"Puppet",
 		"SCSS",
