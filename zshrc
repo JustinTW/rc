@@ -263,3 +263,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export ANDROID_HOME=~/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
+
+alias rm='echo Please use trash-put command to delete files.; false'
