@@ -4,7 +4,10 @@ sUserName=$(whoami)
 sudo dpkg --remove-architecture i386 || true
 
 # visudo
+# ubuntu 16.04
 sudo -u root sed -i -e 's/%sudo   ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers
+# ubuntu 16.04.2
+sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo       ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # add repositories
 apt-key list |grep git-core &> /dev/null
@@ -105,28 +108,31 @@ echo 'Setup ssh security finish !'
 echo 'Next: Setup vim !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
-# vim
-if ! grep -q 'set nu' /etc/vim/vimrc ; then
-  sudo /bin/su -c "echo 'set nu' >> /etc/vim/vimrc"
-fi
-
-# vim
-if ! grep -q 'set mouse-=a' /etc/vim/vimrc ; then
-  sudo /bin/su -c "echo 'set mouse-=a' >> /etc/vim/vimrc"
-fi
-
-echo 'Setup vim finish !'
-echo 'Next: Setup network !'
-read -rsp $'Press any key to continue...\n' -n1 key
-
 # network
-
 if ! grep -q 'hopebaytech.com' /etc/network/interfaces ; then
   sudo /bin/su -c "echo 'dns-search hopebaytech.com' >> /etc/network/interfaces"
   service networking restart
 fi
 
 echo 'Setup network finish !'
+echo 'Next: Setup trash-cli !'
+read -rsp $'Press any key to continue...\n' -n1 key
+
+# install trash-cli
+command -v trash-list &>/dev/null
+if [[ ! $? -eq 0 ]]; then
+  cd /tmp
+  git clone https://github.com/andreafrancia/trash-cli.git
+  cd trash-cli
+  sudo python setup.py install
+  cd --
+  # aruto rotate
+  sudo /bin/su -c "echo \"#\!/bin/bash\" > /etc/cron.daily/trash-cli-rotate"
+  sudo /bin/su -c "echo \"find $HOME/.local/share/Trash/ -mtime +29 --delete\\n\" >> /etc/cron.daily/trash-cli-rotate"
+  sudo /bin/su -c "chmod +x /etc/cron.daily/trash-cli-rotate"
+fi
+
+echo 'Setup trash-cli finish !'
 echo 'Next: Setup zsh !'
 read -rsp $'Press any key to continue...\n' -n1 key
 

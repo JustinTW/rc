@@ -194,10 +194,20 @@ function sss(){
 source ~/.rc/PWD
 SSHUSER="$PROD_USER"
 SSPASSWORD="$PROD_PWD"
-ssh-keygen -f "~/.ssh/known_hosts" -R $1 || true
-sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$1 2>/dev/null && \
-ssh $SSHUSER@$1 -t "sudo -u root sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers" && \
-ssh $SSHUSER@$1 -t sudo tmux
+DEST_HOST=$1
+ssh-keygen -f "$HOME/.ssh/known_hosts" -R $DEST_HOST || true
+sshpass -p "$SSPASSWORD" ssh-copy-id -o StrictHostKeyChecking=no $SSHUSER@$DEST_HOST 2>/dev/null
+sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t "echo $SSPASSWORD | sudo -S sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo	ALL=NOPASSWD:ALL/g' /etc/sudoers"
+sshpass -p "$SSPASSWORD" ssh $SSHUSER@$DEST_HOST -t sudo tmux
+}
+
+function sst(){
+source ~/.rc/PWD
+SSHUSER="$IT_USER"
+SSPASSWORD="$IT_PWD"
+DEST_HOST=$1
+ssh-keygen -f "$HOME/.ssh/known_hosts" -R $DEST_HOST || true
+sshpass -p "$SSPASSWORD" ssh -o StrictHostKeyChecking=no $SSHUSER@$DEST_HOST -p 2200 -t sudo tmux
 }
 
 function bsn(){
@@ -253,3 +263,5 @@ export NVM_DIR="$HOME/.nvm"
 
 export ANDROID_HOME=~/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
+
+alias rm='trash-put'
