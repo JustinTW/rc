@@ -88,8 +88,7 @@
 		".svn",
 		".git",
 		".hg",
-		"CVS",
-		"build"
+		"CVS"
 	],
 	"font_face": "INCONSOLATA",
 	"font_size": 12,
