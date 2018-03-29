@@ -1,6 +1,7 @@
 [user]
 	name = Justin CT Liu
-	email = JustinCT.Liu@moxa.com
+	email = justintwd@gmail.com
+	signingkey = B3A8577E
 [push]
 	default = current
 [branch]
