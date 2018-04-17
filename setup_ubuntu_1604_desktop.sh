@@ -109,8 +109,8 @@ echo 'Next: Setup vim !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
 # network
-if ! grep -q 'tp.office.openfind.com.tw' /etc/network/interfaces ; then
-  sudo /bin/su -c "echo 'dns-search tp.office.openfind.com.tw' >> /etc/network/interfaces"
+if ! grep -q 'moxa.online' /etc/network/interfaces ; then
+  sudo /bin/su -c "echo 'dns-search moxa.online' >> /etc/network/interfaces"
   service networking restart
 fi
 
