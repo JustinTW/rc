@@ -195,6 +195,25 @@ if [ ! -h "$terminatorConf" ]; then
 fi
 
 echo 'Setup terminator finish !'
+echo 'Next: Install Fira Font finish !'
+read -rsp $'Press any key to continue...\n' -n1 key
+
+# Install Fira Font
+mkdir -p $HOME/.local/share/fonts
+sudo mkdir -p /root/.local/share/fonts
+for type in Bold Light Medium Regular Retina; do
+  wget -O $HOME/.local/share/fonts/FiraCode-${type}.ttf \
+  "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
+done
+
+for type in Bold Light Medium Regular Retina; do
+    sudo wget -O /root/.local/share/fonts/FiraCode-${type}.ttf \
+    "https://github.com/tonsky/FiraCode/blob/master/distr/ttf/FiraCode-${type}.ttf?raw=true";
+done
+
+fc-cache -f
+
+echo 'Install Fira Font finish !'
 echo 'Next: Fix sublime cht input !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
