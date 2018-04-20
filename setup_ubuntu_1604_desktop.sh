@@ -236,7 +236,7 @@ code --install-extension ms-python.python
 code --install-extension ms-vscode.cpptools
 code --install-extension ms-vscode.sublime-keybindings
 code --install-extension robertohuertasm.vscode-icons
-code --install-extension wayou.vscode-todo-highlig
+code --install-extension wayou.vscode-todo-highligt
 
 echo 'Install VSCode finish !'
 echo 'Next: Fix sublime cht input !'
