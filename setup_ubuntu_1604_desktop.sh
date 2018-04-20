@@ -214,6 +214,31 @@ done
 fc-cache -f
 
 echo 'Install Fira Font finish !'
+echo 'Next: Install VSCode'
+read -rsp $'Press any key to continue...\n' -n1 key
+
+# Install VSCode
+wget https://go.microsoft.com/fwlink/?LinkID=760868 -O /tmp/vscode.deb
+sudo -i /tmp/vscode.deb
+
+code --install-extension Atishay-Jain.All-Autocomplete
+code --install-extension PeterJausovec.vscode-docker
+code --install-extension Rubymaniac.vscode-paste-and-indent
+code --install-extension Shan.code-settings-sync
+code --install-extension azemoh.one-monokai
+code --install-extension bierner.color-info
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension eamodio.gitlens
+code --install-extension eg2.tslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension mrmlnc.vscode-duplicate
+code --install-extension ms-python.python
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.sublime-keybindings
+code --install-extension robertohuertasm.vscode-icons
+code --install-extension wayou.vscode-todo-highlig
+
+echo 'Install VSCode finish !'
 echo 'Next: Fix sublime cht input !'
 read -rsp $'Press any key to continue...\n' -n1 key
 
