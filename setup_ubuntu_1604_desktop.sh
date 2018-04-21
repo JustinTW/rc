@@ -238,6 +238,8 @@ code --install-extension ms-vscode.sublime-keybindings
 code --install-extension robertohuertasm.vscode-icons
 code --install-extension wayou.vscode-todo-highligt
 
+echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+
 echo 'Install VSCode finish !'
 echo 'Next: Fix sublime cht input !'
 read -rsp $'Press any key to continue...\n' -n1 key
