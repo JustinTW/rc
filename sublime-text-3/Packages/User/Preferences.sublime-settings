@@ -28,7 +28,7 @@
 		"*.zip"
 	],
 	"bold_folder_labels": true,
-	"color_scheme": "Packages/Babel/Monokai Phoenix.tmTheme",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"extra_file_exclude_patterns":
 	[
 		"*.pyc",
@@ -98,6 +98,7 @@
 	[
 		"JsFormat",
 		"JSLint",
+		"Tag",
 		"Vintage"
 	],
 	"line_padding_bottom": 1,
