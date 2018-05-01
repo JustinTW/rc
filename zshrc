@@ -140,6 +140,8 @@ alias vgd='vagrant destroy -f'
 #alias vgdr='vagrant destroy -f $1 && vagrant up $1'
 alias vgp='vagrant provision'
 
+alias ll='ls -alh'
+
 # psql
 export PSQL_EDITOR='vim +"set syntax=sql"'
 export YELLOW=`echo -e '\033[1;33m'`
