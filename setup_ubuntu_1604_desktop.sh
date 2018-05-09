@@ -128,8 +128,8 @@ if [[ ! $? -eq 0 ]]; then
   cd --
   # auto rotate
   sudo /bin/su -c "echo \"#!/bin/bash\" > /etc/cron.daily/trash-cli-rotate"
-  sudo /bin/su -c "echo \"find $HOME/.local/share/Trash/ -mtime +29 --delete\n\" >> /etc/cron.daily/trash-cli-rotate"
-  sudo /bin/su -c "echo \"find /root/.local/share/Trash/ -mtime +29 --delete\n\" >> /etc/cron.daily/trash-cli-rotate"
+  sudo /bin/su -c "echo \"find $HOME/.local/share/Trash/ -mtime +29 -exec \\rm -rf {} \\;\n\" >> /etc/cron.daily/trash-cli-rotate"
+  sudo /bin/su -c "echo \"find /root/.local/share/Trash/ -mtime +29 -exec \\rm -rf {} \\;\n\" >> /etc/cron.daily/trash-cli-rotate"
   sudo /bin/su -c "chmod +x /etc/cron.daily/trash-cli-rotate"
 fi
 
