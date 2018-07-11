@@ -157,6 +157,8 @@ export PAGER
 
 # FASD https://github.com/clvv/fasd
 export PATH=$PATH:$HOME/.rc/fasd
+export PATH=$PATH:$HOME/Android/Sdk/platform-tools
+
 eval "$(fasd --init auto)"
 
 alias v='f -e vim' # quick opening files with vim
