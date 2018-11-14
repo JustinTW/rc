@@ -226,13 +226,19 @@ sudo btrfs subvolume list /mnt/btrfs
 }
 
 function bsnb(){
+echo "Btrfs balance 1/3"
 sudo btrfs balance start -m /mnt/btrfs
 sudo btrfs fi show
+echo "Btrfs balance 1/3 finished!!"
 sudo btrfs fi df /mnt/btrfs
+echo "Btrfs balance 2/3"
 sudo btrfs fi balance start -dusage=10 /mnt/btrfs
 sudo btrfs fi show
+echo "Btrfs balance 2/3 finished!!"
+echo "Btrfs balance 3/3"
 sudo btrfs fi balance start /mnt/btrfs
 sudo btrfs fi show
+echo "Btrfs balance 3/3 finished!!"
 }
 
 function bsnd(){
@@ -270,3 +276,5 @@ export ANDROID_HOME=~/Android/Sdk
 export PATH=${PATH}:${ANDROID_HOME}/tools
 
 alias rm='trash-put'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
