@@ -96,9 +96,14 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
+		"AutoPEP8",
+		"BracketHighlighter",
+		"GitGutter",
 		"JsFormat",
 		"JSLint",
+		"SideBarEnhancements",
 		"Tag",
+		"TypeScript",
 		"Vintage"
 	],
 	"line_padding_bottom": 1,
