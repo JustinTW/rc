@@ -79,6 +79,11 @@ if [ ! -f /usr/local/bin/code ]; then
   sudo ln -fs "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" /usr/local/bin/
 fi
 
+if [ ! -f "$HOME/Library/Application Support/Code/User/settings.json.origin" ]; then
+  mv "$HOME/Library/Application Support/Code/User/settings.json" "$HOME/Library/Application Support/Code/User/settings.json.origin"
+  ln -fs "$HOME/.rc/vscode/settings.json" "$HOME/Library/Application Support/Code/User/settings.json"
+fi
+
 # setup vscode extension
 command -v code
 if [ $? -eq 0 ]; then
