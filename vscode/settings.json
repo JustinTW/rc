@@ -47,5 +47,6 @@
   ],
   "editor.formatOnType": false,
   "files.autoSave": "off",
-  "editor.fontSize": 16
+  "editor.fontSize": 16,
+  "files.useExperimentalFileWatcher": false
 }

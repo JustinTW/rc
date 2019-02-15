@@ -31,7 +31,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python screen ssh-agent autojump coffee git-flow git-remote-branch tmux vagrant debian cp command-not-found last-working-dir docker)
+plugins=(git python screen ssh-agent autojump coffee git-flow git-remote-branch tmux vagrant debian cp command-not-found last-working-dir docker kubectl helm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -280,7 +280,11 @@ export PATH=${PATH}:${ANDROID_HOME}/tools
 
 alias rm='trash-put'
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
