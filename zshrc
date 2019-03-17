@@ -31,14 +31,35 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python screen ssh-agent autojump coffee git-flow git-remote-branch tmux vagrant debian cp command-not-found last-working-dir docker kubectl helm)
+plugins=(git python ssh-agent autojump coffee git-flow git-remote-branch tmux debian cp command-not-found last-working-dir docker kubectl helm)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.rvm/bin
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin
+
+GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+# FASD https://github.com/clvv/fasd
+export PATH=$PATH:$HOME/.rc/fasd
+eval "$(fasd --init auto)"
+
+export PATH=$PATH:$HOME/Android/Sdk/platform-tools
+export PATH=$PATH:$HOME/flutter/bin
+export NVM_DIR=$HOME/.nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
+# This loads nvm bash_completion
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+
+
+export ANDROID_HOME=~/Android/Sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 # vi key binding
 bindkey '^R' history-incremental-search-backward
@@ -56,7 +77,6 @@ export SAVEHIST=10000
 export HISTFILE=~/.zhistory
 # # append command to history file once executed
 setopt APPEND_HISTORY
-
 setopt hist_expire_dups_first
 setopt hist_find_no_dups
 setopt hist_ignore_all_dups
@@ -85,8 +105,6 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
-alias -g gbp='git-buildpackage'
-
 ## Del
 # Delete key (see FreeBSD FAQ on keyboard and mouse)
 bindkey "\e[3~"   delete-char              # xterm
@@ -102,93 +120,47 @@ bindkey "^[OF" end-of-line                 # zsh
 [[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" history-beginning-search-backward
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" history-beginning-search-forward
 
+export LC_ALL=C
+
 # git
 alias g='git'
 alias ga='git add'
-alias gs='git status'
-alias gc='git commit'
-alias gco='git checkout'
-alias gcm='git commit -S -m'
-alias gp='git pull && push'
 alias gb='git branch -a'
-alias gpl='git stash && git pull && git stash pop'
-alias gpp='git pull && git push'
-
+alias gc='git commit'
+alias gcm='git commit -S -m'
+alias gco='git checkout'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gdh='git diff HEAD'
-
-alias gst='git status -s -b'
-alias gl='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
 alias gfp='git fetch -p'
-
-export LC_ALL=C
-
-alias rgl='rvm gemset list'
-alias rgc='rvm gemset create'
-alias rge='rvm gemset empty'
-alias rgu='rvm gemset use'
-alias rgd='rvm gemset delete'
+alias gl='git log --graph --abbrev-commit --decorate --format=format:"%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)" --all'
+alias gpl='git stash && git pull && git stash pop'
+alias gpp='git pull && git push'
+alias gs='git status'
+alias gst='git status -s -b'
 
 alias cw='cd ~/workspace'
 
-alias vgs='vagrant ssh'
-alias vgu='vagrant up'
-#alias vgus='vagrant up $1 && vagrant ssh $1'
-alias vgh='vagrant halt'
-#alias vgr='vagrant halt $1 && vagrant up $1'
-alias vgd='vagrant destroy -f'
-#alias vgdr='vagrant destroy -f $1 && vagrant up $1'
-alias vgp='vagrant provision'
-
 alias ll='ls -alh'
+
+alias rm='trash-put'
 
 # psql
 export PSQL_EDITOR='vim +"set syntax=sql"'
 export YELLOW=`echo -e '\033[1;33m'`
 export LIGHT_CYAN=`echo -e '\033[1;36m'`
 export NOCOLOR=`echo -e '\033[0m'`
-
 export LESS="-iMSx4 -FXR"
-
 PAGER="sed \"s/\([[:space:]]\+-[0-9.]\+\)$/${LIGHT_CYAN}\1$NOCOLOR/;"
 PAGER+="s/\([[:space:]]\+[0-9.\-]\+[[:space:]]\)/${LIGHT_CYAN}\1$NOCOLOR/g;"
 PAGER+="s/|/$YELLOW|$NOCOLOR/g;s/^\([-+]\+\)/$YELLOW\1$NOCOLOR/\" 2>/dev/null  | less"
 export PAGER
 
-# FASD https://github.com/clvv/fasd
-export PATH=$PATH:$HOME/.rc/fasd
-export PATH=$PATH:$HOME/Android/Sdk/platform-tools
-
-eval "$(fasd --init auto)"
-
 alias v='f -e vim' # quick opening files with vim
-
-alias stt='subl .'
 
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-}
-
-function vgus(){
-vagrant up $1 && vagrant ssh $1
-return
-}
-
-function vgrs(){
-vagrant halt $1 && vagrant up $1 && vagrant ssh $1
-return
-}
-
-function vgr(){
-vagrant halt $1 && vagrant up $1 && vagrant ssh $1
-return
-}
-
-function vgdr(){
-vagrant destroy -f $1 && vagrant up $1 && vagrant ssh $1
-return
 }
 
 function t(){
@@ -265,29 +237,18 @@ sudo ls -al /mnt/btrfs
 sudo btrfs subvolume list /mnt/btrfs
 }
 
-
 function gcms(){
 git commit -m "update submodules"
 }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
-
-export ANDROID_HOME=~/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
-
-alias rm='trash-put'
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 # fix helm plugins error
 source <(helm completion zsh | sed -E 's/\["(.+)"\]/\[\1\]/g')
+function h(){
+helm $@
+}
+
+function m(){
+make $@
+}

@@ -1,13 +1,19 @@
 {
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "[dart]": {
+    "editor.formatOnSave": true
+  },
   "[javascript]": {
     "editor.formatOnSave": false
   },
   "[vue]": {
     "editor.formatOnSave": false
+  },
+  "[go]": {
+    "editor.formatOnSave": true
   },
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
@@ -26,10 +32,9 @@
     "suppressShowKeyBindingsNotice": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "sublimeTextKeymap.promptV3Features": true,
   "vsicons.dontShowNewVersionMessage": true,
   "vsicons.projectDetection.autoReload": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "workbench.activityBar.visible": false,
   "eslint.autoFixOnSave": true,
   "prettier.eslintIntegration": true,
@@ -47,6 +52,9 @@
   ],
   "editor.formatOnType": false,
   "files.autoSave": "off",
-  "editor.fontSize": 16,
-  "files.useExperimentalFileWatcher": false
+  "editor.fontSize": 18,
+  "files.useExperimentalFileWatcher": false,
+  "python.jediEnabled": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
 }
