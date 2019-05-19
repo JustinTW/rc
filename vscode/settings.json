@@ -4,7 +4,7 @@
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
   "[dart]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   },
   "[javascript]": {
     "editor.formatOnSave": false
@@ -14,6 +14,10 @@
   },
   "[go]": {
     "editor.formatOnSave": true
+  },
+  "[sql]": {
+    // "editor.formatOnSave": true,
+    "editor.defaultFormatter": "cymonk.sql-formatter"
   },
   "editor.minimap.enabled": false,
   "editor.multiCursorModifier": "ctrlCmd",
@@ -32,8 +36,6 @@
     "suppressShowKeyBindingsNotice": true
   },
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "vsicons.dontShowNewVersionMessage": true,
-  "vsicons.projectDetection.autoReload": true,
   "window.zoomLevel": 0,
   "workbench.activityBar.visible": false,
   "eslint.autoFixOnSave": true,
@@ -56,5 +58,7 @@
   "files.useExperimentalFileWatcher": false,
   "python.jediEnabled": false,
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "[plsql]": {},
+  "extensions.ignoreRecommendations": true
 }
