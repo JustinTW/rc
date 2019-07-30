@@ -57,8 +57,8 @@ export NVM_DIR=$HOME/.nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
 
 
-export ANDROID_HOME=~/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/tools
+export ANDROID_HOME=~/Library/Android/Sdk
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
@@ -126,6 +126,8 @@ bindkey "^[OF" end-of-line                 # zsh
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" history-beginning-search-forward
 
 export LC_ALL=C
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
 
 # git
 alias g='git'
@@ -269,3 +271,7 @@ watch kubectl describe $@
 function wkg(){
 watch kubectl get $@
 }
+
+export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+

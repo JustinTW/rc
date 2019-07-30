@@ -1,10 +1,10 @@
 {
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
   "[dart]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true
   },
   "[javascript]": {
     "editor.formatOnSave": false
@@ -60,5 +60,12 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "[plsql]": {},
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication -javaagent:\"/Users/robo/.vscode/extensions/gabrielbb.vscode-lombok-0.9.8/server/lombok.jar\""
 }
