@@ -35,6 +35,7 @@ plugins=(git python ssh-agent autojump coffee git-flow git-remote-branch tmux de
 
 source $ZSH/oh-my-zsh.sh
 
+SDK_HOME=$HOME/.sdk
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin
 
@@ -44,8 +45,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.rc/fasd
 eval "$(fasd --init auto)"
 
-export PATH=$PATH:$HOME/Android/Sdk/platform-tools
-export PATH=$PATH:$HOME/flutter/bin
+export PATH=$PATH:$HOME/$SDK_HOME/Android/Sdk/platform-tools
+export PATH=$PATH:$HOME/$SDK_HOME/flutter/bin
 export NVM_DIR=$HOME/.nvm
 
 # load nvm for linux
@@ -55,16 +56,6 @@ export NVM_DIR=$HOME/.nvm
 # load nvm for unix
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-
-
-export ANDROID_HOME=~/Library/Android/Sdk
-export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 # vi key binding
 bindkey '^R' history-incremental-search-backward
@@ -126,7 +117,7 @@ bindkey "^[OF" end-of-line                 # zsh
 [[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" history-beginning-search-forward
 
 export LC_ALL=C
-export LC_ALL=en_US.UTF-8  
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # git
@@ -272,6 +263,19 @@ function wkg(){
 watch kubectl get $@
 }
 
-export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
-export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+function dcc(){
+docker stop `docker ps -a -q`
+docker rm `docker ps -a -q`
+docker rmi -f `sudo docker images -q`
+docker volume rm $(docker volume ls -f dangling=true -q)
+}
 
+test aws && export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+test aws && export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc"; fi
