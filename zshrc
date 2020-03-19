@@ -270,8 +270,12 @@ docker rmi -f `sudo docker images -q`
 docker volume rm $(docker volume ls -f dangling=true -q)
 }
 
-test aws && export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
-test aws && export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
+function sed(){
+gsed $@
+}
+
+#test aws && export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
+#test aws && export AWS_SECRET_ACCESS_KEY=$(aws configure get aws_secret_access_key)
 
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -279,3 +283,6 @@ if [ -f "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/.sdk/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc"; fi
+
+export DOCKER_HOST=tcp://JustinPCi54460:2375
+
