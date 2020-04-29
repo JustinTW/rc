@@ -1,8 +1,8 @@
 {
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.formatOnPaste": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
   "[dart]": {
     "editor.formatOnSave": true
   },
@@ -31,7 +31,8 @@
   "editor.wordWrap": "on",
   "explorer.confirmDragAndDrop": false,
   "files.associations": {
-    "*.df": "dockerfile"
+    "*.df": "dockerfile",
+    ".drone.yml": "yaml"
   },
   "files.trimFinalNewlines": false,
   "files.trimTrailingWhitespace": true,
@@ -54,7 +55,7 @@
       "autoFix": true
     }
   ],
-  "editor.formatOnType": false,
+  "editor.formatOnType": true,
   "files.autoSave": "off",
   "editor.fontSize": 18,
   "files.useExperimentalFileWatcher": false,
@@ -73,5 +74,9 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "explorer.confirmDelete": false
+  "explorer.confirmDelete": false,
+  "python.linting.pylintEnabled": false,
+  "yaml.schemas": {
+    "file:///Users/justinct_liu/.vscode/extensions/docsmsft.docs-yaml-0.2.4/schemas/toc.schema.json": "/toc\\.yml/i"
+  }
 }

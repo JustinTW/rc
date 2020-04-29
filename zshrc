@@ -284,5 +284,11 @@ if [ -f "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/.sdk/goo
 # The next line enables shell command completion for gcloud.
 if [ -f "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc"; fi
 
-export DOCKER_HOST=tcp://JustinPCi54460:2375
+export DOCKER_HOST=tcp://JustinPC:2375
+
+# fix ssh send \^M
+# ref: https://askubuntu.com/questions/441744/pressing-enter-produces-m-instead-of-a-newline
+stty sane
+
+alias minicom='TERM=linux minicom'
 
