@@ -31,13 +31,13 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aws git python ssh-agent autojump coffee git-flow git-remote-branch tmux debian cp command-not-found last-working-dir docker kubectl helm)
+plugins=(aws git python ssh-agent autojump coffee git-flow git-remote-branch tmux debian cp command-not-found last-working-dir docker kubectl helm golang)
 
 source $ZSH/oh-my-zsh.sh
 
 SDK_HOME=$HOME/.sdk
 
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin
 
 GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -268,10 +268,6 @@ docker stop `docker ps -a -q`
 docker rm `docker ps -a -q`
 docker rmi -f `sudo docker images -q`
 docker volume rm $(docker volume ls -f dangling=true -q)
-}
-
-function sed(){
-gsed $@
 }
 
 #test aws && export AWS_ACCESS_KEY_ID=$(aws configure get aws_access_key_id)
