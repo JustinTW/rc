@@ -266,7 +266,7 @@ watch kubectl get $@
 function dcc(){
 docker stop `docker ps -a -q`
 docker rm `docker ps -a -q`
-docker rmi -f `sudo docker images -q`
+docker rmi -f `docker images -q`
 docker volume rm $(docker volume ls -f dangling=true -q)
 }
 
