@@ -45,8 +45,8 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$HOME/.rc/fasd
 eval "$(fasd --init auto)"
 
-export PATH=$PATH:$HOME/$SDK_HOME/Android/Sdk/platform-tools
-export PATH=$PATH:$HOME/$SDK_HOME/flutter/bin
+export PATH=$PATH:$SDK_HOME/Android/Sdk/platform-tools
+export PATH=$PATH:$SDK_HOME/flutter/bin
 export NVM_DIR=$HOME/.nvm
 
 # load nvm for linux

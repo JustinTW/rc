@@ -1,8 +1,8 @@
 {
   "editor.fontFamily": "Fira Code",
   "editor.fontLigatures": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
   "[dart]": {
     "editor.formatOnSave": true
   },
@@ -55,7 +55,7 @@
       "autoFix": true
     }
   ],
-  "editor.formatOnType": true,
+  "editor.formatOnType": false,
   "files.autoSave": "off",
   "editor.fontSize": 18,
   "files.useExperimentalFileWatcher": false,
@@ -78,5 +78,7 @@
   "python.linting.pylintEnabled": false,
   "yaml.schemas": {
     "file:///Users/justinct_liu/.vscode/extensions/docsmsft.docs-yaml-0.2.4/schemas/toc.schema.json": "/toc\\.yml/i"
-  }
+  },
+  "go.formatTool": "goimports",
+  "python.languageServer": "Microsoft"
 }
