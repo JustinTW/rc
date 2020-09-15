@@ -4,7 +4,16 @@
   "editor.formatOnPaste": false,
   "editor.formatOnSave": false,
   "[dart]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
   },
   "[javascript]": {
     "editor.formatOnSave": false
@@ -80,5 +89,7 @@
     "file:///Users/justinct_liu/.vscode/extensions/docsmsft.docs-yaml-0.2.4/schemas/toc.schema.json": "/toc\\.yml/i"
   },
   "go.formatTool": "goimports",
-  "python.languageServer": "Microsoft"
+  "python.languageServer": "Microsoft",
+  "aws.samcli.location": "/usr/local/bin/sam",
+  "dart.openDevTools": "flutter"
 }

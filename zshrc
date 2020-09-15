@@ -35,9 +35,11 @@ plugins=(aws git python ssh-agent autojump coffee git-flow git-remote-branch tmu
 
 source $ZSH/oh-my-zsh.sh
 
-SDK_HOME=$HOME/.sdk
+SDK_HOME=$HOME/SDK
 
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/usr/local/go/bin
+
+export PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
@@ -275,10 +277,10 @@ docker volume rm $(docker volume ls -f dangling=true -q)
 
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "${SDK_HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${SDK_HOME}/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/.sdk/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "${SDK_HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${SDK_HOME}/google-cloud-sdk/completion.zsh.inc"; fi
 
 export DOCKER_HOST=tcp://JustinPC:2375
 
@@ -287,4 +289,7 @@ export DOCKER_HOST=tcp://JustinPC:2375
 stty sane
 
 alias minicom='TERM=linux minicom'
+alias mtr='sudo mtr'
+
+[[ -s "/Users/justinct_liu/.gvm/scripts/gvm" ]] && source "/Users/justinct_liu/.gvm/scripts/gvm"
 
