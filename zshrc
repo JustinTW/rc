@@ -258,11 +258,11 @@ make $@
 }
 
 function wkd(){
-watch -n 2 kubectl describe $@
+watch -n 1 kubectl describe $@
 }
 
 function wkg(){
-watch -n 2 kubectl get $@
+watch -n 1 kubectl get $@
 }
 
 function kd(){
