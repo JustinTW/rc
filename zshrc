@@ -31,7 +31,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(aws git python ssh-agent autojump coffee git-flow git-remote-branch tmux debian cp command-not-found last-working-dir docker kubectl helm golang)
+plugins=(aws git python ssh-agent autojump coffee git-flow git-remote-branch tmux debian cp command-not-found last-working-dir docker kubectl helm golang terraform)
 
 source $ZSH/oh-my-zsh.sh
 
